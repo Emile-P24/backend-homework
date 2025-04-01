@@ -17,8 +17,14 @@ associations_df = pd.read_csv(data / 'associations_etudiantes.csv')
 evenements_df = pd.read_csv(data / 'evenements_associations.csv')
 
 ## Vous devez ajouter les routes ici : 
+@app.route('/associations', methods=['GET'])
+def get_associations():
+    return jsonify(associations_df.to_dict(orient='records'))
 
+@app.route('/evenements', methods=['GET'])
+def get_evenements():
+    return jsonify(evenements_df.to_dict(orient='records'))
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
